@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Invoice - 06JEWELS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('Untitled design.png') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      animation: fadeInBody 0.6s ease;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .invoice {
+      width: 90%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.95);
+      margin: 1.5em auto;
+      padding: 1.5em;
+      border: 1px solid #ddd;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: slideUp 0.6s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff6fec;
+      margin-bottom: 1em;
+      font-size: 1.6em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1em;
+      font-size: 0.95em;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.6em;
+      text-align: left;
+    }
+
+    th {
+      background: #ffb1f5;
+      color: #333;
+    }
+
+    .total {
+      text-align: right;
+      font-weight: bold;
+      margin-top: 1em;
+      font-size: 1.1em;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 1.2em;
+      padding: 0.7em 1em;
+      background: #ff88d5;
+      color: white;
+      text-decoration: none;
+      border-radius: 20px;
+      transition: background 0.3s, transform 0.3s;
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+      font-size: 1em;
+    }
+
+    .back-button:hover {
+      background: #ed007a;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1em;
+      background: #efb8eb;
+      color: #fff;
+      font-size: 0.9em;
+      margin-top: auto;
+      animation: fadeInFooter 1s ease;
+    }
+
+    @keyframes fadeInFooter {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    footer a {
+      color: #ed007a;
+      text-decoration: none;
+      margin-left: 0.5em;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 480px) {
+      .invoice {
+        padding: 1em;
+      }
+      table {
+        font-size: 0.85em;
+      }
+      .back-button {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice">
+    <h1>Invoice</h1>
+    <table id="invoice-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price (EGP)</th>
+          <th>Quantity</th>
+          <th>Subtotal (EGP)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Items will be inserted here -->
+      </tbody>
+    </table>
+    <div class="total">
+      Total: EGP <span id="total-amount">0</span>
+    </div>
+    <a href="index.html" class="back-button">Back to Shop</a>
+  </div>
+
+  <footer>
+    © 06JEWELS
+    <a href="https://www.instagram.com/06jewels_eg?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Visit us on Instagram</a>
+  </footer>
+
+  <script>
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const cartTotal = localStorage.getItem('cartTotal') || 0;
+
+    const tableBody = document.querySelector('#invoice-table tbody');
+
+    cartItems.forEach(item => {
+      const row = document.createElement('tr');
+      const subtotal = item.price * item.quantity;
+      row.innerHTML = `
+        <td>${item.name}</td>
+        <td>${item.price}</td>
+        <td>${item.quantity}</td>
+        <td>${subtotal}</td>
+      `;
+      tableBody.appendChild(row);
+    });
+
+    document.getElementById('total-amount').textContent = cartTotal;
+
+    // Clear cart after displaying
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('cartTotal');
+  </script>
+</body>
+</html>
