@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You - 06JEWELS</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #ffe3f0, #fff5fb);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      animation: fadeInBody 1s ease forwards;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .heart {
+      font-size: 3rem;
+      color: #ff5dbd;
+      animation: beat 1s infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    h1 {
+      color: #ff4fb7;
+      font-size: 2.5em;
+      margin: 0.3em 0;
+      animation: bounceIn 1s ease;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.05); opacity: 1; }
+      70% { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #555;
+      animation: fadeInText 2s ease;
+    }
+
+    @keyframes fadeInText {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    a.button {
+      margin-top: 30px;
+      padding: 0.7em 1.5em;
+      background-color: #ff5dbd;
+      color: white;
+      text-decoration: none;
+      font-size: 1.1em;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      animation: fadeInButton 2.5s ease;
+    }
+
+    a.button:hover {
+      background-color: #e30084;
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(255, 93, 189, 0.4);
+    }
+
+    @keyframes fadeInButton {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="heart">💖</div>
+  <h1>Thank You!</h1>
+  <p>Your order has been received. We truly appreciate your support 💎</p>
+  <a href="index.html" class="button">Back to Shop</a>
+
+</body>
+</html>

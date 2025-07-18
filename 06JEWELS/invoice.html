@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Invoice - 06JEWELS</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('Untitled design.png') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      animation: fadeInBody 0.6s ease;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .invoice {
+      width: 90%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.95);
+      margin: 1.5em auto;
+      padding: 1.5em;
+      border: 1px solid #ddd;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: slideUp 0.6s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff6fec;
+      margin-bottom: 1em;
+      font-size: 1.6em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1em;
+      font-size: 0.95em;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.6em;
+      text-align: left;
+    }
+
+    th {
+      background: #ffb1f5;
+      color: #333;
+    }
+
+    .total {
+      text-align: right;
+      font-weight: bold;
+      margin-top: 1em;
+      font-size: 1.1em;
+    }
+
+    .form-group {
+      margin-top: 1em;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.3em;
+      font-weight: bold;
+      color: #444;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.5em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 1em;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.2em;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 0.7em 1em;
+      background: #ff88d5;
+      color: white;
+      text-decoration: none;
+      border-radius: 20px;
+      transition: background 0.3s, transform 0.3s;
+      font-size: 1em;
+      min-width: 150px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background: #ed007a;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1em;
+      background: #efb8eb;
+      color: #fff;
+      font-size: 0.9em;
+      margin-top: auto;
+      animation: fadeInFooter 1s ease;
+    }
+
+    @keyframes fadeInFooter {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    footer a {
+      color: #ed007a;
+      text-decoration: none;
+      margin-left: 0.5em;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 480px) {
+      .invoice {
+        padding: 1em;
+      }
+      table {
+        font-size: 0.85em;
+      }
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice" id="invoice-content">
+    <h1>Invoice</h1>
+    <table id="invoice-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price (EGP)</th>
+          <th>Quantity</th>
+          <th>Subtotal (EGP)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Items will be inserted here -->
+      </tbody>
+    </table>
+    <div class="total">
+      Total: EGP <span id="total-amount">0</span>
+    </div>
+
+    <div class="form-group">
+      <label for="customer-name">Name:</label>
+      <input type="text" id="customer-name" placeholder="Enter your name">
+    </div>
+    <div class="form-group">
+      <label for="customer-phone">Mobile Number:</label>
+      <input type="text" id="customer-phone" placeholder="Enter your mobile number">
+    </div>
+    <div class="form-group">
+      <label for="customer-address">Address:</label>
+      <input type="text" id="customer-address" placeholder="Enter your address">
+    </div>
+
+    <div class="button-container">
+      <button class="button" onclick="downloadInvoice()">Save Invoice as PDF</button>
+      <a href="index.html" class="button">Back to Shop</a>
+      <button class="button" onclick="goTothankyou()">Next</button>
+    </div>
+  </div>
+
+  <footer>
+    © 06JEWELS
+    <a href="https://www.instagram.com/06jewels_eg" target="_blank">Visit us on Instagram</a>
+  </footer>
+
+  <script>
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const cartTotal = localStorage.getItem('cartTotal') || 0;
+
+    const tableBody = document.querySelector('#invoice-table tbody');
+    cartItems.forEach(item => {
+      const row = document.createElement('tr');
+      const subtotal = item.price * item.quantity;
+      row.innerHTML = `
+        <td>${item.name}</td>
+        <td>${item.price}</td>
+        <td>${item.quantity}</td>
+        <td>${subtotal}</td>
+      `;
+      tableBody.appendChild(row);
+    });
+
+    document.getElementById('total-amount').textContent = cartTotal;
+
+    // Clear cart data
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('cartTotal');
+
+    function downloadInvoice() {
+      const name = document.getElementById('customer-name').value.trim();
+      const phone = document.getElementById('customer-phone').value.trim();
+      const address = document.getElementById('customer-address').value.trim();
+
+      if (!name || !phone || !address) {
+        alert('Please fill in all customer details.');
+        return;
+      }
+
+      const invoice = document.getElementById('invoice-content');
+
+      // Save original width
+      const originalWidth = invoice.style.width;
+      invoice.style.width = '100%'; // Make full width for PDF
+
+      const customerInfo = document.createElement('div');
+      customerInfo.innerHTML = `
+        <h3>Customer Details</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Mobile:</strong> ${phone}</p>
+        <p><strong>Address:</strong> ${address}</p>
+      `;
+      customerInfo.style.marginTop = "1em";
+      invoice.appendChild(customerInfo);
+
+      html2pdf()
+        .set({
+          margin: 0,
+          filename: 'Invoice-06JEWELS.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2 },
+          jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        })
+        .from(invoice)
+        .save()
+        .then(() => {
+          invoice.style.width = originalWidth; // Restore width
+          customerInfo.remove();
+        });
+    }
+
+    
+  function goTothankyou() {
+    const name = document.getElementById('customer-name').value.trim();
+    const phone = document.getElementById('customer-phone').value.trim();
+    const address = document.getElementById('customer-address').value.trim();
+
+    if (!name || !phone || !address) {
+      alert('Please fill in all customer details before continuing.');
+      return;
+    }
+
+    // Optionally save user details to localStorage for use on thankyou.html
+    localStorage.setItem('customerName', name);
+    localStorage.setItem('customerPhone', phone);
+    localStorage.setItem('customerAddress', address);
+
+    // Redirect to thankyou.html
+    window.location.href = 'thankyou.html';
+  }
+
+  </script>
+
+</body>
+</html>

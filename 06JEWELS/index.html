@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>06JEWELRY Online Shop</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+</head>
+<body>
+
+<header>
+  <div class="header-flex"></div>
+  <img src="logo-removebg.png" alt="06JEWELRY Logo" class="logo">
+  <div class="search-container">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="searchInput" placeholder="Search products..." oninput="filterProducts()">
+    </div>
+  </div>
+</header>
+
+<section class="products">
+  <div class="product">
+    <div class="image-container">
+    <img src="silver.jpeg" alt="Silver italian bracelet">
+    <div class="overlay">
+      Silver Italian bracelet matrial stainless steel
+    </div>
+  </div>
+    <h3>Silver italian bracelet</h3>
+    <p>250 EGP</p>
+    <button onclick="addToCart('Silver italian bracelet', 250)">Add to Cart</button>
+
+  </div>
+     <div class="product">
+     <div class="image-container">
+    <img src="gold.jpeg" alt="Gold italian bracelet">
+    <div class="overlay">
+      Golden Italian bracelet matrial stainless steel
+    </div>
+    </div>
+    <h3>Gold italian bracelet</h3>
+    <p>250 EGP</p>
+    <button onclick="addToCart('Gold italian bracelet', 250)">Add to Cart</button>
+  </div>
+ 
+ 
+  <div class="product">
+    <div class="image-container">
+    <img src="WhatsApp Image 2025-07-14 at 1.58.51 PM.jpeg" alt="String bracelet">
+    <div class="overlay">
+      String bracelet matrial polyester
+      </div>
+      </div>
+    <h3>String bracelet</h3>
+    <p>100 EGP</p>
+    <button onclick="addToCart('String bracelet', 100)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <div class="image-container">
+      <img src="eye charm.jpg" alt="golden eye charm">
+      <div class="overlay">
+        golden eye charm stainless steel
+      </div>
+    </div>
+    <h3>golden eye charm</h3>
+    <p>85 EGP</p>
+    <button onclick="addToCart('golden eye charm', 85)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <div class="image-container">
+      <img src="evil eye.jpg" alt="blue eye charm">
+      <div class="overlay">
+       blue eye charm stainless steel
+      </div>
+    </div>
+    <h3>blue eye charm</h3>
+    <p>85 EGP</p>
+    <button onclick="addToCart('blue eye charm', 85)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <div class="image-container">
+      <img src="star.jpg" alt="star charm">
+      <div class="overlay">
+        star charm stainless steel
+      </div>
+    </div>
+    <h3>star charm</h3>
+    <p>85 EGP</p>
+    <button onclick="addToCart('star charm', 85)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <div class="image-container">
+      <img src="heart.jpeg" alt="pink heart charm">
+      <div class="overlay">
+        pink heart charm stainless steel
+      </div>
+    </div>
+    <h3>pink heart charm</h3>
+    <p>85 EGP</p>
+    <button onclick="addToCart('pink heart charm', 85)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <div class="image-container">
+      <img src="red heart.jpg" alt="red heart charm">
+      <div class="overlay">
+        red heart charm stainless steel
+      </div>
+    </div>
+    <h3>red heart charm</h3>
+    <p>85 EGP</p>
+    <button onclick="addToCart('red heart charm', 85)">Add to Cart</button>
+  </div>
+</section>
+</section>
+
+<section class="cart" id="cart">
+  <h2>Your Cart</h2>
+  <div id="cart-items"></div>
+  <p><strong>Total: EGP<span id="cart-total">0</span></strong></p>
+  <button class="checkout" onclick="checkout()">Checkout</button>
+</section>
+<footer>
+  © 06JEWELS
+  <a href="https://www.instagram.com/06jewels_eg?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Visit us on Instagram</a>
+</footer>
+<script src="script.js"></script>
+<script>
+document.querySelectorAll('.image-container').forEach(container => {
+  container.addEventListener('click', () => {
+    // Toggle the overlay
+    const overlay = container.querySelector('.overlay');
+    if (overlay.style.opacity === '1') {
+      overlay.style.opacity = '0';
+    } else {
+      overlay.style.opacity = '1';
+    }
+  });
+});
+</script>
+<script>
+window.addEventListener('load', () => {
+  document.body.classList.add('loaded');
+});
+</script>
+<div id="cart-message"></div>
+<div id="cart-items"></div>
+<span id="cart-total">0</span>
+<div id="cart-message"></div>
+
+</div>
+
+<div class="vertical-phone-frame">
+  <div class="vertical-notch"></div>
+  <video autoplay muted loop playsinline class="vertical-video">
+    <source src="video.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+
+</body>
+</html>

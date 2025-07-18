@@ -1,0 +1,262 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #fbd9ff, #cc96fb);
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+body.loaded {
+  opacity: 1;
+}
+header {
+  text-align: center;
+  background: radial-gradient(circle at center, #F3EEEA 60%, #e0dcd7 100%);
+  color: #ff6fec;
+  padding: 1em 0;
+  position: relative;
+}
+
+
+.header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  max-width: 300px;
+  width: 80%;
+  height: auto;
+}
+
+.search-container {
+  position: relative;
+  margin-left: auto;
+}
+
+#searchInput {
+  width: 220px;
+  padding: 0.5em 0.5em 0.5em 2em;
+  border: 1px solid #ff88d5;
+  border-radius: 20px;
+  font-size: 0.95em;
+  background-color: #fff;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+#searchInput:focus {
+  border: 1px solid #ed007a;
+  box-shadow: 0 0 5px rgba(237,0,122,0.4);
+  outline: none;
+}
+
+/* Products grid */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1em;
+  max-width: 1200px;
+  margin: 1em auto;
+  padding: 1em;
+  background: #feb5ff;
+  border: 1px solid #eeb3f9;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.product {
+  background: #fff;
+  border-radius: 5px;
+  padding: 1em;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.product img {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.product button {
+  background: #ff88d5;
+  color: #fff;
+  border: none;
+  padding: 0.5em;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.cart {
+  width: 90%;
+  max-width: 500px;
+  margin: 1em auto;
+  background: #fff;
+  padding: 1em;
+  border-radius: 16px;
+}
+
+.cart h2 {
+  margin-top: 0;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5em 0;
+}
+
+.cart-item button {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 0.3em 0.6em;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.checkout {
+  background: #ff88df;
+  color: #fff;
+  padding: 0.5em;
+  border: none;
+  cursor: pointer;
+  border-radius: 16px;
+  width: 100%;
+}
+
+footer {
+  text-align: center;
+  padding: 1em;
+  background: #efb8eb;
+  color: #fff;
+  font-size: 0.9em;
+  margin-top: 2em;
+}
+
+footer a {
+  color: #ed007a;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Cart message animation */
+#cart-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #ff88d5;
+  color: white;
+  padding: 0.7em 1em;
+  border-radius: 5px;
+  font-size: 0.95em;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 1000;
+  transform: translateY(-10px);
+  
+}
+
+#cart-message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .header-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+.search-icon {
+  left: 10px;
+  top: 45%;
+  transform: translateY(-50%);
+}
+  #searchInput {
+    width: 90%;
+  }
+
+  .logo {
+    max-width: 80%;
+  }
+}
+@media (max-width: 480px) {
+  .search-container {
+    position: relative; /* keep relative positioning! */
+    text-align: center;
+    margin-top: 0.5em;
+  }
+}
+.overlay {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.image-container:hover .overlay {
+  opacity: 1;
+}
+.product button, .checkout, .cart-item button {
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.product button:hover, .checkout:hover {
+  background: #ff66c4;
+  transform: scale(1.05);
+}
+.cart-item button:hover {
+  background: #c82333;
+  transform: scale(1.05);
+}
+.image-container {
+  cursor: pointer;
+}
+
+.cart {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.vertical-phone-frame {
+  width: 360px;             /* 9:16 aspect ratio: width = 360px, height = 640px */
+  height: 640px;
+  border: 16px solid #333;
+  border-radius: 40px;
+  padding: 0;
+  background: #000;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  margin: 2em auto;
+}
+
+.vertical-notch {
+  width: 100px;
+  height: 20px;
+  background: #222;
+  border-radius: 10px;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.vertical-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* Ensures full frame is filled */
+  border-radius: 24px;
+}
